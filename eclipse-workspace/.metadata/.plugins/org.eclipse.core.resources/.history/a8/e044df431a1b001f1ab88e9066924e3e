@@ -1,0 +1,130 @@
+package Portfolio;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+public class ResponsiveCalculator extends JFrame implements ActionListener {
+    private JTextField display;
+    private double num1, num2, result;
+    private char operator;
+
+    public ResponsiveCalculator() {
+        // Create the frame
+        setTitle("Calculator");
+        setSize(400, 500);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        // Create the display field
+        display = new JTextField();
+        display.setFont(new Font("Arial", Font.PLAIN, 24));
+        display.setEditable(false);
+        display.setHorizontalAlignment(JTextField.RIGHT);
+        display.setPreferredSize(new Dimension(400, 50));
+        add(display, BorderLayout.NORTH);
+
+        // Add key listener for keyboard support
+        display.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char keyChar = e.getKeyChar();
+                if (Character.isDigit(keyChar) || keyChar == '.') {
+                    display.setText(display.getText() + keyChar);
+                } else if (keyChar == '+' || keyChar == '-' || keyChar == '*' || keyChar == '/') {
+                    setOperator(keyChar);
+                } else if (keyChar == '=' || keyChar == '\n') {
+                    calculateResult();
+                } else if (keyChar == '\b') { // Handle backspace
+                    String text = display.getText();
+                    if (text.length() > 0) {
+                        display.setText(text.substring(0, text.length() - 1));
+                    }
+                }
+            }
+        });
+
+        // Create the buttons panel
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(5, 4, 10, 10));
+        add(panel, BorderLayout.CENTER);
+
+        // Button labels
+        String[] buttons = {
+            "7", "8", "9", "/",
+            "4", "5", "6", "*",
+            "1", "2", "3", "-",
+            "0", ".", "=", "+",
+            "C"
+        };
+
+        // Create and add buttons to the panel
+        for (String text : buttons) {
+            JButton button = new JButton(text);
+            button.setFont(new Font("Arial", Font.PLAIN, 24));
+            button.addActionListener(this);
+            panel.add(button);
+        }
+    }
+
+    private void setOperator(char operator) {
+        if (!display.getText().isEmpty()) {
+            num1 = Double.parseDouble(display.getText());
+            this.operator = operator;
+            display.setText("");
+        }
+    }
+
+    private void calculateResult() {
+        try {
+            num2 = Double.parseDouble(display.getText());
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 == 0) {
+                        display.setText("Error: Div by 0");
+                        return;
+                    }
+                    result = num1 / num2;
+                    break;
+            }
+            display.setText(String.valueOf(result));
+            num1 = result;
+        } catch (NumberFormatException e) {
+            display.setText("Error");
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+
+        if (command.charAt(0) >= '0' && command.charAt(0) <= '9' || command.equals(".")) {
+            display.setText(display.getText() + command);
+        } else if (command.equals("=")) {
+            calculateResult();
+        } else if (command.equals("C")) {
+            display.setText("");
+        } else {
+            setOperator(command.charAt(0));
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            ResponsiveCalculator calculator = new ResponsiveCalculator();
+            calculator.setVisible(true);
+        });
+    }
+}

@@ -1,0 +1,71 @@
+ package ParentPkg;
+ public class Parent {
+//public abstract class Parent {
+	String name,mobile;
+	int age,price,year;
+	public Parent(int year) {
+		this.year=year;
+	}
+	enum values{
+		Hello,
+		Mathi,
+		
+	}
+	String getName() {
+		return name;
+	}
+	int getAge() {
+		return age;
+	}
+//public abstract void method();
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Parent p=new Parent(2024);
+		Demo d=new Demo("Robert",22);
+		Demo obj=new Demo("Nokia",25000,2024);
+		d.function();
+		d.getName();
+		d.getAge();
+		System.out.println(Training.d);
+		values mess=values.Hello;
+		values Name=values.Mathi;
+		System.out.println(mess+" "+Name);
+		
+	System.out.println("My name is "+d.getName()+" and i'm "+d.getAge()+" years old" );
+//d.method();
+		//p.method();
+		//p.function();
+System.out.println("The mobile brand is "+obj.brand()+ " and rate become "+obj.rate()+" launched in "+obj.launch());
+	}
+	String brand() {
+		return mobile;
+	}
+	int rate() {
+		return price;
+	}
+	int launch() {
+		return year;
+	}
+
+}
+class Demo extends Parent{
+	
+	public Demo(String name,int age) {
+		super(0);
+		this.name=name;
+		this.age=age;
+	}
+public Demo(String mobile,int price,int year) {
+	super(year);	
+	this.mobile=mobile;
+		this.price=price;
+	}
+	void function() {
+		System.out.println("Hello demo");
+	}
+	//@Override
+	//public void method() {
+	// TODO Auto-generated method stub
+	//System.out.println("hello");	
+	//}
+}

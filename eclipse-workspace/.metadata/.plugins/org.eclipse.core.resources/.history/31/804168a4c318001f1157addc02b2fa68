@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
+module SqliteDemo {
+	    requires java.sql;
+	    // other requires statements
+	}
+

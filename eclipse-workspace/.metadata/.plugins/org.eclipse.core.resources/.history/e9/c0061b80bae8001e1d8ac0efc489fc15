@@ -1,0 +1,16 @@
+package ParentPkg;
+import java.time.LocalTime; // import the LocalTime class
+import java.time.LocalDate; 
+public class innerClass {
+
+	public void fun() {
+		// TODO Auto-generated method stub
+	}
+		  public static void main(String[] args) {
+		    LocalTime myObj = LocalTime.now();
+		    LocalDate myObj2 = LocalDate.now();
+		    System.out.println(myObj2);
+		    System.out.println(myObj);
+		  }
+
+}

@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
+module Sqlite_Jdbc {
+	requires java.sql;
+}

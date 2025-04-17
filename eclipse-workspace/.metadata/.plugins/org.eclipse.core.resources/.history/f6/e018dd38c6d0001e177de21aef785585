@@ -1,0 +1,15 @@
+package ParentPkg;
+
+public class Parent {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+System.out.println("Hello java");
+	}
+
+}
+class Demo{
+	void funcition() {
+		System.out.println("Hello demo");
+	}
+}

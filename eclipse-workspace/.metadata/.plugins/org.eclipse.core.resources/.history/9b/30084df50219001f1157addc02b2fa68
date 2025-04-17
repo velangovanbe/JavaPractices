@@ -1,0 +1,13 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
+module SqliteDemo {
+	    requires java.sql;
+	   // requires org.slf4j;
+	    requires org.xerial.sqlitejdbc;
+	    // other requires statements
+	}
+

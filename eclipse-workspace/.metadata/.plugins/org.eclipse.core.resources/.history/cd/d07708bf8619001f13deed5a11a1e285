@@ -1,0 +1,31 @@
+package Demo;
+import java.util.Stack;
+public class StringsClass {
+
+	public static void main(String[] args) {
+		String original="Hello World";
+		Stack<Character> stack = new Stack<>();
+
+        String original2 = "Hello";
+        
+
+        for (char c : original2.toCharArray()) {
+            stack.push(c);
+        }
+
+        StringBuilder reversed2 = new StringBuilder();
+        while (!stack.isEmpty()) {
+            reversed2.append(stack.pop());
+        }
+
+        System.out.println("Reversed string: " + reversed2.toString());
+
+		String reversed="";
+     for(int i=original.length()-1;i>=0;i--) {
+    	 reversed +=original.charAt(i);
+     }
+     System.out.println("Reversed string: "+reversed);
+	}
+
+	    }
+	

@@ -1,0 +1,36 @@
+package SqlDB;
+import java.lang.module.FindException;
+import java.sql.*;
+import org.xerial.sqlitejdbc;
+import org.slf4j;
+
+//import java.org.xerial.sqlitejdbc;
+
+//import java.sql.SQLException;
+import java.net.ConnectException;
+
+public class DBPro {
+
+	public static void main(String[] args)throws Exception {
+Class.forName("org.sqlite.JDBC");
+Connection con=DriverManager.getConnection("jdbc:sqlite:/d:\\db\\demo.db");
+ Statement stmt=con.createStatement();
+ String qry="SELECT ID,NAME,AGE,CITY from users ";
+ ResultSet rs=stmt.executeQuery(qry);
+ int id,age;
+ String name,city;
+ while(rs.next()) {
+	 id=rs.getInt("ID");
+	 name=rs.getString("NAME");
+	 age=rs.getInt("AGE");
+	 city=rs.getString("CITY");
+	 System.out.println(id+" ");
+	 System.out.println(name+" ");
+	 System.out.println(age+" ");
+	 System.out.println(city+" ");
+ }
+ stmt.close();
+ con.close();
+	}
+
+}

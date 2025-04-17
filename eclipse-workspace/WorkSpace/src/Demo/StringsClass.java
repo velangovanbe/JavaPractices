@@ -1,0 +1,53 @@
+package Demo;
+import java.util.Stack;
+public class StringsClass {
+void function() {
+	
+	for(char s='A';s<='Z';s++)
+	{
+		System.out.print(s+" ");
+	}
+	System.out.println();
+}
+	public static void main(String[] args) {
+		System.out.println(args.length);
+		
+		 String original5 = "Hello World";
+	     String reversed5 = reverseRecursively(original5);
+
+	        System.out.println("Reversed string: " + reversed5);
+	    StringsClass sc=new StringsClass();
+	    sc.function();
+
+	    
+		String original="Hello World";
+		Stack<Character> stack = new Stack<>();
+
+        String original2 = "Hello";
+
+        for (char c : original2.toCharArray()) {
+            stack.push(c);
+        }
+//StringBuffer sb=new StringBuffer();
+        StringBuilder reversed2 = new StringBuilder();
+        while (!stack.isEmpty()) {
+            reversed2.append(stack.pop());
+        }
+
+        System.out.println("Reversed string: " + reversed2.toString());
+
+		String reversed="";
+     for(int i=original.length()-1;i>=0;i--) {
+    	 reversed +=original.charAt(i);
+     }
+     System.out.println("Reversed string: "+reversed);
+	}
+	public static String reverseRecursively(String str) {
+        if (str.isEmpty()) {
+            return str;
+        }
+        return reverseRecursively(str.substring(1)) + str.charAt(0);
+    }
+
+	    }
+	

@@ -1,0 +1,49 @@
+package SqlDB;
+//import java.lang.module.FindException;
+import java.sql.*;
+public class DBPro {
+
+/*	public static void main(String[] args)throws Exception {
+Class.forName("org.sqlite.JDBC");
+Connection con=DriverManager.getConnection("jdbc:sqlite:/d:\\db\\demo.db");
+ Statement stmt=con.createStatement();
+ String qry="SELECT ID,NAME,AGE,CITY from users ";
+ ResultSet rs=stmt.executeQuery(qry);
+ int id,age;
+ String name,city;
+ while(rs.next()) {
+	 id=rs.getInt("ID");
+	 name=rs.getString("NAME");
+	 age=rs.getInt("AGE");
+	 city=rs.getString("CITY");
+	 System.out.println(id+" ");
+	 System.out.println(name+" ");
+	 System.out.println(age+" ");
+	 System.out.println(city+" ");
+ }
+ stmt.close();
+ con.close();
+	}
+*/
+	public static void main(String[] args) throws Exception 
+	{
+		try 
+		{
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","");
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery("SELECT * FROM casetest where id=1");
+		while(rs.next())
+		{
+			System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3));
+		}
+		con.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+
+
+}

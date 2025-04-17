@@ -1,0 +1,10 @@
+package ParentPkg;
+
+public class innerClass {
+
+	public void fun() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

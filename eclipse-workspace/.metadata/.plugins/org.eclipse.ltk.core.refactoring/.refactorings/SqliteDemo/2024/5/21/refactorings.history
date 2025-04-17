@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;SqliteDemo/jar&apos; to &apos;jars&apos;" description="Rename resource &apos;jar&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="jar" name="jars" stamp="1716437216424" updateReferences="true"/>
+</session>

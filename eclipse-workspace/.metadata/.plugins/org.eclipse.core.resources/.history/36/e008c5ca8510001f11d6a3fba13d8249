@@ -1,0 +1,60 @@
+package Portfolio;
+
+import java.io.*;
+import java.net.*;
+
+public class ChatApplication {
+
+    public static void main(String[] args) {
+        final int PORT = 1234;
+
+        try {
+            // Create a server socket
+            ServerSocket serverSocket = new ServerSocket(PORT);
+            System.out.println("Server started. Waiting for clients...");
+
+            // Accept client connections
+            Socket clientSocket = serverSocket.accept();
+            System.out.println("Client connected.");
+
+            // Create input and output streams for the client socket
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+
+            // Read the client's username
+            String username = in.readLine();
+            System.out.println(username + " has joined the chat.");
+
+            // Send a welcome message to the client
+            out.println("Welcome to the chat application, " + username + "!");
+
+            // Start a loop to read and send messages
+            String message;
+            BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in));
+            while (true) {
+                // Read a message from the client
+                message = in.readLine();
+                if (message == null) {
+                    break; // Connection closed by client
+                }
+                System.out.println(username + ": " + message);
+
+                // Read a message from the console
+                System.out.print("You: ");
+                message = consoleInput.readLine();
+
+                // Send the message to the client
+                out.println(message);
+            }
+
+            // Close connections
+            in.close();
+            out.close();
+            clientSocket.close();
+            serverSocket.close();
+            consoleInput.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
